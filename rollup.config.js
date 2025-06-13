@@ -29,7 +29,10 @@ export default defineConfig([
         },
       }),
       typescript({ sourceMap: true, tsconfig: './tsconfig.json' }),
-      svelte({ include: 'src/components/**/*.svelte', emitCss: true }),
+      svelte({
+        include: ['src/components/**/*.svelte'],
+        emitCss: true,
+      }),
       scss({ fileName: 'styles.css' }),
       resolve({
         browser: true,
