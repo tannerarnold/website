@@ -10,6 +10,8 @@ import alias from '@rollup/plugin-alias';
 import terser from '@rollup/plugin-terser';
 import path from 'pathe';
 
+// Dirname needs to be defined here,
+// otherwise we get errors on build
 const __dirname = import.meta.dirname;
 
 export default defineConfig([
