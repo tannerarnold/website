@@ -6,7 +6,9 @@
   let {
     children,
     ...options
-  }: HTMLAttributes<HTMLDivElement> & { children: Snippet | null } = $props();
+  }: HTMLAttributes<HTMLDivElement> & {
+    children: Snippet | null;
+  } = $props();
 </script>
 
 <div {...options} class={cx('card', options.class as string | undefined)}>
