@@ -1,0 +1,10 @@
+{
+  "extends": "@tsconfig/svelte",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@utils/*": ["src/utils/*"]
+    }
+  },
+  "include": ["src/**/*.ts", "src/**/*.svelte"]
+}
