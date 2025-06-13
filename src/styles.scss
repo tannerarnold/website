@@ -1,12 +1,27 @@
+$light-background: #fff;
+$light-shadow: rgba(212, 212, 212, 0.7);
+$dark-background: #333;
+$dark-shadow: rgba(70, 70, 70, 0.7);
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+.dark {
+  background-color: $dark-background;
+  color: $light-background;
+
+  .card {
+    border: 1px solid $dark-shadow;
+    box-shadow: 0.25em 0.5em 2em $dark-shadow;
+  }
+}
+
 .card {
   padding: 0.5em 1em;
-  border: 1px solid gray;
+  border: 1px solid $light-shadow;
   border-radius: 0.25em;
-  box-shadow: 0.25em 0.5em 2em gray;
+  box-shadow: 0.25em 0.5em 2em $light-shadow;
 }
