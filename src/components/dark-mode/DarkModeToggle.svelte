@@ -1,5 +1,7 @@
 <script lang="ts">
   import { getTheme, setTheme } from '@utils/dark-mode';
+  import Moon from '../icons/Moon.svelte';
+  import Sun from '../icons/Sun.svelte';
   let currentMode = $state<'light' | 'dark'>(getTheme());
   function toggleTheme() {
     if (currentMode === 'light') {
@@ -14,8 +16,8 @@
 
 <button onclick={toggleTheme}>
   {#if currentMode === 'light'}
-    Toggle To Dark
+    <Moon />
   {:else}
-    Toggle To Light
+    <Sun />
   {/if}
 </button>
