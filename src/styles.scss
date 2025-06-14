@@ -1,7 +1,6 @@
-$light-background: #fff;
-$light-shadow: rgba(212, 212, 212, 0.7);
-$dark-background: #333;
-$dark-shadow: rgba(70, 70, 70, 0.7);
+@use 'colors';
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Petrona:ital,wght@0,100..900;1,100..900&display=swap');
 
 * {
   box-sizing: border-box;
@@ -9,19 +8,101 @@ $dark-shadow: rgba(70, 70, 70, 0.7);
   padding: 0;
 }
 
+h1,
+h2,
+h3 {
+  font-family: 'Manrope', sans-serif;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+h3 {
+  font-family: 'Petrona', serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+p {
+  font-size: 1rem;
+  font-family: 'Petrona', serif;
+  font-weight: 300;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+  background-color: colors.$light-surface-1;
+}
+
+button:hover {
+  background-color: colors.$light-surface-2;
+}
+
+svg path {
+  stroke: colors.$accent-0;
+}
+
+body {
+  background-color: colors.$light-surface-0;
+}
+
 .dark {
-  background-color: $dark-background;
-  color: $light-background;
+  background-color: colors.$dark-surface-0;
+  color: colors.$white;
+
+  button {
+    background-color: colors.$dark-surface-2;
+    color: colors.$accent-0;
+  }
+
+  button:hover {
+    background-color: colors.$dark-surface-1;
+  }
+
+  svg path {
+    stroke: colors.$accent-0;
+  }
 
   .card {
-    border: 1px solid $dark-shadow;
-    box-shadow: 0.25em 0.5em 2em $dark-shadow;
+    border: 1px solid colors.$dark-surface-2;
   }
+
+  .card:hover {
+    box-shadow: 0.25em 0.5em 0.75em colors.$dark-surface-1;
+    transition: box-shadow 0.1s;
+  }
+
+  .card.filled {
+    background-color: colors.$dark-surface-2;
+  }
+}
+
+.card-grid {
+  padding: 1em;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1em;
 }
 
 .card {
   padding: 0.5em 1em;
-  border: 1px solid $light-shadow;
+  border: 1px solid colors.$light-surface-2;
   border-radius: 0.25em;
-  box-shadow: 0.25em 0.5em 2em $light-shadow;
+}
+
+.card:hover {
+  box-shadow: 0.25em 0.5em 0.75em colors.$light-surface-1;
+  transition: box-shadow 0.1s;
+}
+
+.card.filled {
+  background-color: colors.$light-surface-2;
 }
