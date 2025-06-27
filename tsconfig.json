@@ -3,8 +3,10 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@utils/*": ["src/utils/*"]
-    }
+      "@/*": ["src/utils/*"],
+      "#/*": ["src/database/*"]
+    },
+    "types": ["vite/client"]
   },
-  "include": ["src/**/*.ts", "src/**/*.svelte"]
+  "include": ["src/**/*.ts", "src/**/*.svelte", "src/**/*.md", "src/**/*.js"]
 }

@@ -3,18 +3,23 @@
   import type { Snippet } from 'svelte';
   import type { HTMLAttributes } from 'svelte/elements';
 
-  type CardType = 'hollow' | 'filled';
-
+  type Spacing = 'left' | 'center' | 'right' | 'apart';
+  type Direction = 'row' | 'column';
   let {
     children,
-    type = 'hollow',
+    direction = 'row',
+    alignment = 'left',
     ...options
   }: HTMLAttributes<HTMLDivElement> & {
-    type?: CardType;
     children: Snippet | null;
+    direction: Direction;
+    alignment: Spacing;
   } = $props();
 </script>
 
-<div {...options} class={cx('card', type, options.class as string | undefined)}>
+<div
+  {...options}
+  class={cx(`flex-${direction}`, `flex-${alignment}`, options.class as string)}
+>
   {@render children?.()}
 </div>

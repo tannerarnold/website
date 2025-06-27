@@ -20,12 +20,10 @@ export const getTheme = (): Theme => {
 
 export const setTheme = (theme: Theme) => {
   const currentTheme: Theme = localStorage.getItem(themeContextKey) as Theme;
-  if (currentTheme !== theme) {
-    if (currentTheme === 'dark') {
-      document.body.classList.remove('dark');
-    } else {
-      document.body.classList.add('dark');
-    }
+  if (currentTheme === 'dark') {
+    document.body.classList.remove('dark');
+  } else {
+    document.body.classList.add('dark');
   }
   localStorage.setItem(themeContextKey, theme);
 };

@@ -1,51 +1,40 @@
 import { defineConfig } from 'rollup';
-import resolve from '@rollup/plugin-node-resolve';
-import typescript from '@rollup/plugin-typescript';
-import serve from 'rollup-plugin-serve';
-import svelte from 'rollup-plugin-svelte';
-import copy from 'rollup-plugin-copy';
-import livereload from 'rollup-plugin-livereload';
-import scss from 'rollup-plugin-scss';
+import nodeResolve from '@rollup/plugin-node-resolve';
 import alias from '@rollup/plugin-alias';
-import terser from '@rollup/plugin-terser';
-import path from 'pathe';
+import typescript from '@rollup/plugin-typescript';
+import commonjs from '@rollup/plugin-commonjs';
+import { resolve } from 'pathe';
+import json from '@rollup/plugin-json';
 
-// Dirname needs to be defined here,
-// otherwise we get errors on build
-const __dirname = import.meta.dirname;
-
-export default defineConfig([
-  {
-    verbose: true,
-    input: 'src/index.ts',
-    output: {
-      file: 'dist/index.js',
-      format: 'iife',
-    },
-    plugins: [
-      alias({
-        entries: {
-          '@utils/*': path.resolve(__dirname, 'src/utils', '*'),
-        },
-      }),
-      typescript({ sourceMap: true, tsconfig: './tsconfig.json' }),
-      svelte({
-        include: ['src/components/**/*.svelte'],
-        emitCss: true,
-      }),
-      scss({ fileName: 'styles.css' }),
-      resolve({
-        browser: true,
-        exportConditions: ['svelte'],
-        extensions: '.svelte',
-      }),
-      terser(),
-      copy({ targets: [{ src: 'public/index.html', dest: 'dist' }] }),
-      serve({
-        port: 8080,
-        contentBase: ['dist'],
-      }),
-      livereload('dist'),
-    ],
+export default defineConfig({
+  input: 'src/server.ts',
+  output: {
+    file: 'dist/server.js',
+    format: 'module',
   },
-]);
+  external: [
+    'better-sqlite3',
+    'chokidar',
+    'dotenv',
+    'dotenv/config',
+    'drizzle-orm',
+    'drizzle-orm/better-sqlite3',
+    'drizzle-orm/better-sqlite3/migrator',
+    'drizzle-orm/sqlite-core',
+    'express',
+    'gray-matter',
+    'pathe',
+  ],
+  plugins: [
+    alias({
+      entries: {
+        '@': resolve('./src/utils'),
+        '#': resolve('./src/database'),
+      },
+    }),
+    typescript(),
+    commonjs(),
+    nodeResolve(),
+    json(),
+  ],
+});

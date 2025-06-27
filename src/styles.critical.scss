@@ -1,0 +1,43 @@
+@use 'colors';
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: colors.$dark-surface-0;
+  color: colors.$white;
+
+  button {
+    background-color: colors.$dark-surface-1;
+    color: colors.$white;
+  }
+
+  button:hover {
+    background-color: colors.$dark-surface-2;
+  }
+
+  svg path {
+    stroke: colors.$dark-surface-1;
+    fill: colors.$dark-surface-1;
+  }
+
+  nav {
+    background-color: colors.$dark-surface-1;
+  }
+
+  footer {
+    background-color: colors.$dark-surface-1;
+  }
+
+  a,
+  a:visited {
+    color: colors.$white;
+  }
+
+  .front-page-content {
+    background-color: colors.$dark-surface-0;
+  }
+}
