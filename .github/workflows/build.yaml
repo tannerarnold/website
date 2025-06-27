@@ -37,6 +37,7 @@ jobs:
       - name: Build Image And Push To Github Container Registry
         uses: docker/build-push-action@v6
         with:
+          context: .
           file: client.dockerfile
           push: true
           tags: |
@@ -72,6 +73,7 @@ jobs:
       - name: Build Image And Push To Github Container Registry
         uses: docker/build-push-action@v6
         with:
+          context: .
           file: server.dockerfile
           push: true
           tags: |

@@ -5,7 +5,7 @@ USER runner
 COPY --chown=runner package.json /app/package.json
 COPY --chown=runner package-lock.json /app/package.json
 COPY --chown=runner src/database /app/src/database
-COPY --chown=runner dist/server.js /app/server.js
+COPY --chown=runner ./dist/server.js /app/server.js
 WORKDIR /app
 ENV DATABASE_URL=file:/database/database.db?mode=rwc
 RUN npm i
