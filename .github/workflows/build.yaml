@@ -10,6 +10,8 @@ jobs:
   build-frontend:
     name: Build Frontend Website
     runs-on: ubuntu-latest
+    env:
+      SERVER_URL: ${{ vars.SERVER_URL }}
     permissions:
       contents: read
       packages: write
