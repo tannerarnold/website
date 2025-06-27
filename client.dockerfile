@@ -4,3 +4,5 @@ RUN adduser -D runner
 USER runner
 COPY Caddyfile /etc/caddy/Caddyfile
 COPY ./dist /dist
+
+EXPOSE 8050

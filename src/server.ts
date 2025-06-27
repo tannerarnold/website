@@ -132,7 +132,11 @@ watch.on('unlink', (path) => {
 });
 
 const corsMiddleware = cors({
-  origin: ['http://localhost:8050', 'http://localhost:5173'],
+  origin: [
+    'http://localhost:8050',
+    'http://localhost:5173',
+    process.env.FRONTEND_URL!,
+  ],
 });
 
 const app = express();
