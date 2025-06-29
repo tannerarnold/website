@@ -421,6 +421,101 @@ nav {
       text-justify: inter-word;
     }
   }
+  > .unsubscribe-container {
+    display: flex;
+    width: 100%;
+
+    & h1 {
+      font-family: 'Manrope', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    & p {
+      font-family: 'Petrona', serif;
+      line-height: 1.35rem;
+      text-align: justify;
+      text-justify: inter-word;
+      margin-bottom: 1rem;
+    }
+
+    & form {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+
+      > input {
+        background-color: colors.$dark-surface-1;
+        color: colors.$white;
+        border: none;
+        padding: 0.25rem;
+        margin-bottom: 1rem;
+        ~ label.email-label {
+          position: absolute;
+          font-family: 'Manrope', sans-serif;
+          font-size: 0.8rem;
+          top: 0.25rem;
+          left: 0.25rem;
+          transition: 0.2s top ease-in-out, 0.2s font-size ease-in-out;
+        }
+        ~ label.unsubscribe-reason-label {
+          position: absolute;
+          position: absolute;
+          font-family: 'Manrope', sans-serif;
+          font-size: 0.8rem;
+          top: 3rem;
+          left: 0.25rem;
+          transition: 0.2s top ease-in-out, 0.2s font-size ease-in-out;
+        }
+      }
+
+      > input.email-input:focus {
+        outline: none;
+      }
+
+      @each $letter in $letters {
+        > input.email-input:focus ~ label.email-label,
+        > input.email-input[data-value^='#{$letter}' i] ~ label.email-label {
+          outline: none;
+          font-size: 0.6rem;
+          top: -1rem;
+        }
+      }
+
+      > input.unsubscribe-reason-input:focus {
+        outline: none;
+      }
+
+      @each $letter in $letters {
+        > input.unsubscribe-reason-input:focus ~ label.unsubscribe-reason-label,
+        > input.unsubscribe-reason-input[data-value^='#{$letter}' i]
+          ~ label.unsubscribe-reason-label {
+          font-size: 0.6rem;
+          top: 1.75rem;
+        }
+      }
+
+      & textarea:focus,
+      & textarea:valid {
+        outline: none;
+      }
+
+      & button {
+        border: none;
+        background-color: colors.$accent;
+        color: colors.$white;
+        padding: 0.25rem 1rem;
+        font-family: 'Manrope', sans-serif;
+        font-weight: 600;
+        font-size: 1rem;
+        min-width: 35%;
+      }
+      & button:hover {
+        background-color: colors.$accent-hover;
+      }
+    }
+  }
   > .posts-index-container {
     display: flex;
     width: 100%;

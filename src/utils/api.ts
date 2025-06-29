@@ -45,4 +45,31 @@ const fetchPostBySlug = async (
   return (await response.json()) as PostWithContent;
 };
 
-export { fetchPostBySlug, fetchPosts, fetchPostsSearchIndex };
+const subscribe = async (email: string): Promise<void> => {
+  await fetch(`${baseUrl}/notifications/subscribe`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ email }),
+  });
+};
+
+const unsubscribe = async (email: string, reason: string): Promise<boolean> => {
+  const response = await fetch(`${baseUrl}/notifications/unsubscribe`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ email, unsubscribe_reason: reason }),
+  });
+  return response.ok;
+};
+
+export {
+  fetchPostBySlug,
+  fetchPosts,
+  fetchPostsSearchIndex,
+  subscribe,
+  unsubscribe,
+};

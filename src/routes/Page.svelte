@@ -10,7 +10,7 @@
   import Aws from '/src/components/icons/AWS.svelte';
   import Azure from '/src/components/icons/Azure.svelte';
   import Firewall from '/src/components/icons/Firewall.svelte';
-  import { fetchPosts } from '@/api';
+  import { fetchPosts, subscribe } from '@/api';
   import type { PostIndex } from '#/schema/post';
   import Card from '/src/components/card/Card.svelte';
   import Link from '/src/components/router/Link.svelte';
@@ -18,6 +18,7 @@
   import Motherboard from '/src/components/icons/Motherboard.svelte';
   import Gears from '/src/components/icons/Gears.svelte';
   import Cloud from '/src/components/icons/Cloud.svelte';
+  import type { FormEventHandler } from 'svelte/elements';
   //   const titleStrings = [
   //     'Typescript',
   //     'SQL',
@@ -29,6 +30,12 @@
   //     'IT Professional',
 
   let posts = $state<PostIndex[]>([]);
+  let email = $state<string>('');
+
+  const submitHandler: FormEventHandler<HTMLFormElement> = async (e) => {
+    e.preventDefault();
+    await subscribe(email);
+  };
 
   $effect(() => {
     fetchPosts({ order: 'date:desc', page: 0, size: 3 }).then(
@@ -49,12 +56,13 @@
       <Flex class="profession-subtitle" alignment="center">
         <h3>Software, Networking, Administration, Troubleshooting</h3>
       </Flex>
-      <form id="subscribe-form">
+      <form id="subscribe-form" onsubmit={submitHandler}>
         <input
           id="subscribe-email"
           class="subscribe-input"
           type="email"
           required
+          bind:value={email}
         />
         <label for="subscribe-email">Email</label>
         <button type="submit">Subscribe To The Blog</button>

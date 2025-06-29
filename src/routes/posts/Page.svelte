@@ -32,7 +32,7 @@
         </CardGrid>
       {:else}
         <Flex alignment="center">
-          <p>Nothing to see here.</p>
+          <p class="posted-date">Nothing to see here.</p>
         </Flex>
       {/if}
     </div>

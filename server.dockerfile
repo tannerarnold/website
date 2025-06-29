@@ -11,5 +11,6 @@ ENV DATABASE_URL=file:/database/database.db?mode=rwc
 RUN npm i
 
 EXPOSE 8080
+EXPOSE 465
 
 ENTRYPOINT [ "node", "./server.js" ]

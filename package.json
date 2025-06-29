@@ -28,6 +28,7 @@
     "@types/clean-css": "^4.2.11",
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.3",
+    "@types/nodemailer": "^6.4.17",
     "clean-css": "^5.3.3",
     "dotenv": "^16.5.0",
     "drizzle-kit": "^0.31.1",
@@ -44,12 +45,14 @@
   "dependencies": {
     "animejs": "^4.0.2",
     "better-sqlite3": "^11.10.0",
+    "body-parser": "^2.2.0",
     "chokidar": "^4.0.3",
     "cors": "^2.8.5",
     "drizzle-orm": "^0.44.2",
     "express": "^5.1.0",
     "flexsearch": "^0.8.205",
     "gray-matter": "^4.0.3",
+    "nodemailer": "^7.0.3",
     "pathe": "^2.0.3",
     "remove-markdown": "^0.6.2"
   }
