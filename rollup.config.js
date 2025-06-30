@@ -26,6 +26,8 @@ export default defineConfig({
     'express',
     'gray-matter',
     'pathe',
+    '@sentry/node',
+    '@sentry/profiling-node',
   ],
   plugins: [
     alias({
