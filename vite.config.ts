@@ -19,6 +19,7 @@ export default defineConfig({
   ],
   define: {
     'process.env.SERVER_URL': JSON.stringify(process.env.SERVER_URL),
+    'process.env.SENTRY_DSN': JSON.stringify(process.env.SENTRY_DSN),
   },
   resolve: {
     alias: {

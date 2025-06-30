@@ -12,6 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       SERVER_URL: ${{ vars.SERVER_URL }}
+      SENTRY_DSN: ${{ vars.SENTRY_DSN }}
     permissions:
       contents: read
       packages: write
