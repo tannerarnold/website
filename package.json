@@ -43,6 +43,11 @@
     "web-vitals": "^5.0.3"
   },
   "dependencies": {
+    "@sentry/node": "^9.33.0",
+    "@sentry/profiling-node": "^9.33.0",
+    "@sentry/rollup-plugin": "^3.5.0",
+    "@sentry/svelte": "^9.33.0",
+    "@sentry/vite-plugin": "^3.5.0",
     "animejs": "^4.0.2",
     "better-sqlite3": "^11.10.0",
     "body-parser": "^2.2.0",

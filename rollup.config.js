@@ -5,12 +5,14 @@ import typescript from '@rollup/plugin-typescript';
 import commonjs from '@rollup/plugin-commonjs';
 import { resolve } from 'pathe';
 import json from '@rollup/plugin-json';
+import { sentryRollupPlugin } from '@sentry/rollup-plugin';
 
 export default defineConfig({
   input: 'src/server.ts',
   output: {
     file: 'dist/server.js',
     format: 'module',
+    sourcemap: true,
   },
   external: [
     'better-sqlite3',
@@ -36,5 +38,10 @@ export default defineConfig({
     commonjs(),
     nodeResolve(),
     json(),
+    sentryRollupPlugin({
+      authToken: process.env.SENTRY_AUTH_TOKEN,
+      org: 'tanner-arnold',
+      project: 'website',
+    }),
   ],
 });

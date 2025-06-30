@@ -1,3 +1,4 @@
+import '@/sentry';
 import express from 'express';
 import chokidar from 'chokidar';
 import matter from 'gray-matter';
@@ -13,6 +14,7 @@ import removeMd from 'remove-markdown';
 import nodemailer from 'nodemailer';
 import type { Request } from 'express';
 import { subscriptions } from '#/schema/subscription';
+import * as Sentry from '@sentry/node';
 
 type Metadata = {
   title: string;
@@ -220,8 +222,6 @@ const corsMiddleware = cors({
 });
 
 const app = express();
-app.use(corsMiddleware);
-app.use(bodyParser.json());
 app.get('/', (_, res) => {
   res.send('Healthy!');
 });
@@ -378,6 +378,11 @@ app.post(
     res.status(200).send();
   }
 );
+
+Sentry.setupExpressErrorHandler(app);
+
+app.use(corsMiddleware);
+app.use(bodyParser.json());
 
 app.listen(8080, () => {
   console.log('Listening on Port 8080...');

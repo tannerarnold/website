@@ -2,6 +2,7 @@ import { defineConfig } from 'vite';
 import { svelte } from '@sveltejs/vite-plugin-svelte';
 import { inlineCriticalCssAndJs } from './src/critical-css-js-vite';
 import path from 'pathe';
+import { sentryVitePlugin } from '@sentry/vite-plugin';
 import 'dotenv/config';
 
 export default defineConfig({
@@ -11,6 +12,10 @@ export default defineConfig({
       path.join(process.cwd(), '/src/styles.critical.scss'),
       path.join(process.cwd(), '/src/critical.ts')
     ),
+    sentryVitePlugin({
+      org: 'tanner-arnold',
+      project: 'website',
+    }),
   ],
   define: {
     'process.env.SERVER_URL': JSON.stringify(process.env.SERVER_URL),
@@ -25,6 +30,7 @@ export default defineConfig({
     modulePreload: {
       polyfill: false,
     },
+    sourcemap: true,
   },
   server: {
     proxy: {
