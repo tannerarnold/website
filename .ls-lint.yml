@@ -1,0 +1,18 @@
+ls:
+  .dir: kebab-case | regex:\.github
+  .{yaml,yml}: kebab-case
+  .ts: kebab-case
+  .scss: kebab-case
+  src:
+    components:
+      .svelte: PascalCase
+    routes:
+      .dir: regex::?[a-z\-]+
+      .svelte: regex:Page
+ignore:
+  - .git
+  - dist
+  - staging
+  - posts
+  - node_modules
+  - src/database/migrations

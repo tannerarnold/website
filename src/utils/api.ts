@@ -8,7 +8,7 @@ const fetchPosts = async (options?: {
   page?: number;
   size?: number;
 }): Promise<PostIndex[]> => {
-  let params: Record<string, string> = {};
+  const params: Record<string, string> = {};
   if (options) {
     for (const key of Object.keys(options) as (keyof typeof options)[]) {
       if (options[key]) params[key as string] = options[key].toString();

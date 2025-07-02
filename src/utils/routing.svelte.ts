@@ -2,7 +2,7 @@ import type { Component } from 'svelte';
 import type { Action } from 'svelte/action';
 
 interface ModuleObject {
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 // Wrapper underneath the hood for routes to define what segments
@@ -82,7 +82,7 @@ function generateProps(
   path: string,
   segments: { name: string; variable: boolean }[]
 ) {
-  let componentProps: Record<string, string> = {};
+  const componentProps: Record<string, string> = {};
   const pathSegments = path.replace(/^\/+|\/+$/g, '').split('/');
   pathSegments.map(
     (s, i) => segments[i].variable && (componentProps[segments[i].name] = s)
@@ -97,7 +97,7 @@ export async function loadRoute(path: string) {
     console.error(`No route found at ${path}!`);
     return;
   }
-  component = (await route.component()).default;
+  component = (await route.component()).default as Component;
   componentProps = generateProps(path, route.segments);
 }
 

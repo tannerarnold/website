@@ -7,7 +7,7 @@ let index = $state<Index | undefined>(undefined);
 let indexReady = $state<boolean>(false);
 
 const createPostIndex = (items: PostWithContent[]): Index => {
-  let index = new FlexSearch.Index({
+  const index = new FlexSearch.Index({
     tokenize: 'forward',
   });
   items.forEach((post, i) =>
@@ -18,12 +18,12 @@ const createPostIndex = (items: PostWithContent[]): Index => {
 
 const searchIndex = (
   term: string
-): Array<Pick<PostIndex, 'title' | 'slug'> & { matchedText: string }> => {
+): Array<Omit<PostIndex, 'posted_date'> & { matchedText: string }> => {
   if (!index) return [];
   const results = index.search(term);
   return results.map((value) => {
     const matchedValue = allPosts[value as number];
-    const { title, content, slug } = matchedValue;
+    const { id, title, content, slug } = matchedValue;
     const formattedText = content.replace(/\n+/g, ' ').trim();
     const textIndex = formattedText.toLowerCase().indexOf(term.toLowerCase());
     const titleIndex = title.toLowerCase().indexOf(term.toLowerCase());
@@ -70,6 +70,7 @@ const searchIndex = (
       splicedAndHighlightedTextMatch =
         splicedAndHighlightedTextMatch + '&hellip;';
     return {
+      id,
       title: splicedAndHighlightedTitleMatch,
       slug,
       matchedText: splicedAndHighlightedTextMatch,

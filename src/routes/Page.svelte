@@ -3,11 +3,11 @@
   import MotherboardBackground from '/src/components/backgrounds/MotherboardBackground.svelte';
   import Typescript from '/src/components/icons/Typescript.svelte';
   import Database from '/src/components/icons/Database.svelte';
-  import Html5 from '/src/components/icons/HTML5.svelte';
-  import Css3 from '/src/components/icons/CSS3.svelte';
-  import CSharp from '/src/components/icons/CSharp.svelte';
+  import Html5 from '/src/components/icons/Html5.svelte';
+  import Css3 from '/src/components/icons/Css3.svelte';
+  import CSharp from '/src/components/icons/Csharp.svelte';
   import Terminal from '/src/components/icons/Terminal.svelte';
-  import Aws from '/src/components/icons/AWS.svelte';
+  import Aws from '/src/components/icons/Aws.svelte';
   import Azure from '/src/components/icons/Azure.svelte';
   import Firewall from '/src/components/icons/Firewall.svelte';
   import { fetchPosts, subscribe } from '@/api';

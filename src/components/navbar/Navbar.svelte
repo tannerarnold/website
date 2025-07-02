@@ -4,13 +4,11 @@
   import Link from '../router/Link.svelte';
   import CardGrid from '../card/CardGrid.svelte';
   import Card from '../card/Card.svelte';
-  import Database from '../icons/Database.svelte';
   import { cx } from '@/class-merge';
-  import Flex from '../flex/Flex.svelte';
   import MagnifyingGlass from '../icons/MagnifyingGlass.svelte';
   let term = $state<string>('');
   let foundPosts = $state<
-    Array<Pick<PostIndex, 'title' | 'slug'> & { matchedText: string }>
+    Array<Omit<PostIndex, 'posted_date'> & { matchedText: string }>
   >([]);
   let searchToggled = $state<boolean>(false);
 
@@ -22,7 +20,7 @@
   };
 
   const searchBarKeyboardHandler = (e: KeyboardEvent) => {
-    const alphaNumericKeys = new RegExp(/[A-Za-z0-9 \-"'\(\)\/?.]/);
+    const alphaNumericKeys = new RegExp(/[A-Za-z0-9 \-"'()/?.]/);
     if (!e.key.match(alphaNumericKeys)) e.preventDefault();
   };
 
@@ -115,10 +113,10 @@
         {/if}
       </div>
       <CardGrid style="width: 100%; padding: 1rem 0;" columns={1}>
-        {#each foundPosts as post}
+        {#each foundPosts as post (post.slug)}
           <Card>
             <div>
-              <Link as="h2" to={`/posts/${post.slug}`}>{@html post.title}</Link>
+              <Link as="h2" to={`/posts/${post.id}`}>{@html post.title}</Link>
               <p>{@html post.matchedText}</p>
             </div>
           </Card>
